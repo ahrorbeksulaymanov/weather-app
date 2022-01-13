@@ -37,6 +37,8 @@ const MainPage = () => {
                         const hour = Math.floor(new Date().getHours() / 3) * 3
                         const res_data = res?.data?.list.filter((item:any) => item.dt_txt.slice(11, 13) == hour)
                         setData(res_data);
+                        console.log("res_data", res_data);
+                        
                         setcityName(res?.data?.city?.name)
                         setisLoading(false)
                         setisData(false)
@@ -59,7 +61,7 @@ const MainPage = () => {
 
     return (
         <Styles>
-            <div className="big_div">
+            <div className="big_div pb-5">
                 <div className="container">
                     <input className="search-input" value={inputVal} onChange={(e) => setinputVal(e.target.value)} type="text" placeholder="Search the weather in..." />
                     <span className="h3 text-light ms-5">{cityName}</span>
@@ -67,8 +69,8 @@ const MainPage = () => {
                     {
                         data.length !== 0 && <BrowserRouter>
                             <Routes>
+                                <Route path='/*' element={<AllDays data={data} timeHour={timeHour} />} />
                                 <Route path='/view-weather/:id' element={<ViewWeather cityName={cityName} />} />
-                                <Route path='/' element={<AllDays data={data} timeHour={timeHour} />} />
                             </Routes>
                         </BrowserRouter>
                     }

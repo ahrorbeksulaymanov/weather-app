@@ -16,7 +16,7 @@ const AllDays = (props:any) => {
     return (
         <div className="row">
             {
-                datas && datas?.map((item: any, index: number) => (
+                props.data && props.data?.map((item: any, index: number) => (
                     <div key={index} className="col-xl-3 col-md-4 col-sm-6">
                         <Link to={`/view-weather/${item?.dt_txt.slice(0, 10)}`}>
                             <div className="weather-card text-light">
